@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace ClientWPF.Common
 {
+
+    /// <summary>
+    /// Файл запросов к API
+    /// </summary>
     public static class Client
     {
         public async static Task<HttpResponseMessage> GetAllEmployees() 

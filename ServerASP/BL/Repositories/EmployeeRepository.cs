@@ -1,20 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServerASP.BL.Dtos;
 using ServerASP.BL.Enums;
+using ServerASP.BL.Interfaces;
 using ServerASP.Infrastructure.DbContexts;
 using ServerASP.Infrastructure.DbModels;
 
 namespace ServerASP.BL.Repositories
 {
-    public class EmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
         private MyContext _context;
+        private ILogger<EmployeeRepository> _logger;
 
-        public EmployeeRepository(MyContext context)
+        public EmployeeRepository(MyContext context, ILogger<EmployeeRepository> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
+        
         public async Task<EmployeeDto> GetById(int Id)
         {
             try
@@ -30,6 +34,7 @@ namespace ServerASP.BL.Repositories
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 throw new Exception("Не удалось получить сотрудника...");
             }
         }
@@ -52,6 +57,7 @@ namespace ServerASP.BL.Repositories
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 throw new Exception("Не удалось прочитать данные о сотрудниках...");
             }
         }
@@ -83,6 +89,7 @@ namespace ServerASP.BL.Repositories
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 throw new Exception("Не удалось записать данные о новом сотруднике...");
             }
         }
@@ -103,6 +110,7 @@ namespace ServerASP.BL.Repositories
             }
             catch (Exception ex) 
             {
+                _logger.LogError(ex.Message);
                 throw new Exception("Не удалось удалить сотрудника...");
             }
         }
@@ -125,6 +133,7 @@ namespace ServerASP.BL.Repositories
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 throw new Exception("Не удалось изменить сотрудника...");
             }
         }
@@ -171,6 +180,7 @@ namespace ServerASP.BL.Repositories
                 }
                 catch (Exception ex)
                 {
+                    _logger.LogError(ex.Message);
                     transaction.Rollback();
                     throw new Exception("Не удалось обновить сотрудников...");
                 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServerASP.BL.Dtos;
+using ServerASP.BL.Interfaces;
 using ServerASP.BL.Repositories;
 using ServerASP.Infrastructure.DbModels;
 using System.Net;
@@ -13,13 +14,13 @@ namespace ServerASP.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeRepository _employeeRepository;
-        //private readonly ILogger _logger;
+        private readonly IEmployeeRepository _employeeRepository;
+        private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(EmployeeRepository repository/*, ILogger logger*/)
+        public EmployeeController(IEmployeeRepository repository, ILogger<EmployeeController> logger)
         {
             _employeeRepository = repository;
-            //_logger = logger;
+            _logger = logger;
         }
 
         [HttpGet("GetById")]
@@ -59,7 +60,7 @@ namespace ServerASP.Controllers
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex.Message);
+                _logger.LogError(ex.Message);
 
                 return BadRequest(ex.Message);
             }
@@ -76,7 +77,7 @@ namespace ServerASP.Controllers
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex.Message);
+                _logger.LogError(ex.Message);
 
                 return BadRequest(ex.Message);
             }
@@ -93,7 +94,7 @@ namespace ServerASP.Controllers
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex.Message);
+                _logger.LogError(ex.Message);
 
                 return BadRequest(ex.Message);
             }
@@ -110,7 +111,7 @@ namespace ServerASP.Controllers
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex.Message);
+                _logger.LogError(ex.Message);
 
                 return BadRequest(ex.Message);
             }

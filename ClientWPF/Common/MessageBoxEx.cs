@@ -10,6 +10,10 @@ using System.Drawing;
 
 namespace ClientWPF.Common
 {
+
+    /// <summary>
+    /// Обёртка для MessageBox, чтобы он корректно отображался
+    /// </summary>
     public class MessageBoxEx
     {
         private static IntPtr _owner;

@@ -1,4 +1,5 @@
 
+using ServerASP.BL.Interfaces;
 using ServerASP.BL.Repositories;
 using ServerASP.Infrastructure.DbContexts;
 
@@ -17,8 +18,9 @@ namespace ServerASP
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddTransient<EmployeeRepository>();
-            builder.Services.AddLogging();
+            builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole();
 
             var app = builder.Build();
 

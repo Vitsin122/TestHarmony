@@ -1,6 +1,4 @@
-﻿using ServerASP.Infrastructure.DbModels;
-
-namespace ServerASP.Infrastructure.DbContexts
+﻿namespace ServerASP.Infrastructure.DbModels
 {
     public class Status
     {
